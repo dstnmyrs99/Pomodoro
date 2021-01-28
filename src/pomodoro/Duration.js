@@ -1,5 +1,6 @@
 import React from "react";
 import { minutesToDuration } from "../utils/duration";
+import  {PropTypes}  from 'prop-types';
 
 function Duration({ type, time, setTime, high, low, inSession, increment }) {
   //line 6 is only for qualified testing purposes
@@ -43,5 +44,15 @@ function Duration({ type, time, setTime, high, low, inSession, increment }) {
     </>
   );
 }
+
+Duration.propTypes = {
+type: PropTypes.string,
+time: PropTypes.number,
+setTime: PropTypes.func,
+high: PropTypes.number,
+low: PropTypes.number,
+inSession: PropTypes.bool,
+increment: PropTypes.number
+};
 
 export default Duration;

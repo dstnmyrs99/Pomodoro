@@ -1,14 +1,22 @@
 import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
+import  {PropTypes}  from 'prop-types';
 
-function Timer({ focusTime, remainingTime, isTimerRunning, inSession, currentSession, breakTime }) {
-    const paused = isTimerRunning ? '': 'PAUSED';
-    const time = currentSession === 'On Break' ? breakTime : focusTime;
-    const percent = `${((time * 60 - remainingTime) / (time * 60))*100}`;
-    
-  if (inSession){
+function Timer({
+  focusTime,
+  remainingTime,
+  isTimerRunning,
+  inSession,
+  currentSession,
+  breakTime,
+}) {
+  const paused = isTimerRunning ? "" : "PAUSED";
+  const time = currentSession === "On Break" ? breakTime : focusTime;
+  const percent = `${((time * 60 - remainingTime) / (time * 60)) * 100}%`;
+
+  if (inSession) {
     return (
-      <div>
+      <>
         {/* TODO: This area should show only when a focus or break session is running or pauses */}
         <div className="row mb-2">
           <div className="col">
@@ -37,12 +45,20 @@ function Timer({ focusTime, remainingTime, isTimerRunning, inSession, currentSes
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
-}else{
+  } else {
     return null;
-}
+  }
 }
 
+Timer.propTypes = {
+    focusTime: PropTypes.number,
+    remainingTime: PropTypes.number,
+    isTimerRunning: PropTypes.bool,
+    currentSession: PropTypes.string,
+    breakTime: PropTypes.number,
+    inSession: PropTypes.bool,
+    };
 
 export default Timer;
