@@ -12,7 +12,7 @@ function Timer({
 }) {
   const paused = isTimerRunning ? "" : "PAUSED";
   const time = currentSession === "On Break" ? breakTime : focusTime;
-  const percent = `${((time * 60 - remainingTime) / (time * 60)) * 100}%`;
+  const percent = ((time * 60 - remainingTime) / (time * 60)) * 100;
 
   if (inSession) {
     return (
@@ -40,7 +40,7 @@ function Timer({
                 aria-valuemin="0"
                 aria-valuemax="100"
                 aria-valuenow={percent} // TODO: Increase aria-valuenow as elapsed time increases
-                style={{ width: percent }} // TODO: Increase width % as elapsed time increases
+                style={{ width: `${percent}%` }} // TODO: Increase width % as elapsed time increases
               />
             </div>
           </div>
